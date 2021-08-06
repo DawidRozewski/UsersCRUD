@@ -17,7 +17,6 @@ public class UserDAO {
     private static final String UPDATE_USER = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
     private static final String DELETE_USER = "DELETE  FROM users WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users";
-    private static
     public User create(User user) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement preStmt = conn.prepareStatement(CREATE_USER_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -35,6 +34,7 @@ public class UserDAO {
             return null;
         }
     }
+
 
     public User read(int userID) {
         try (Connection conn = DbUtil.getConnection()) {
@@ -59,8 +59,8 @@ public class UserDAO {
     public void update(User user) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement preStmt = conn.prepareStatement(UPDATE_USER);
-            preStmt.setString(1, user.getEmail());
-            preStmt.setString(2, user.getUsername());
+            preStmt.setString(1, user.getUsername());
+            preStmt.setString(2, user.getEmail());
             preStmt.setString(3, hashPassword(user.getPassword()));
             preStmt.setInt(4, user.getId());
             preStmt.executeUpdate();
