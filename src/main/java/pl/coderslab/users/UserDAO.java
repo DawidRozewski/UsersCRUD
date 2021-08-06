@@ -77,8 +77,8 @@ public class UserDAO {
             while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("id"));
-                user.setUsername("username");
-                user.setEmail("email");
+                user.setUsername(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
                 users = addToArray(user, users);
             }
             return users;

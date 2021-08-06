@@ -2,8 +2,8 @@ package pl.coderslab.users;
 
 public class User {
     private int id;
-    private String email;
     private String username;
+    private String email;
     private String password;
 
     public String getEmail() {
