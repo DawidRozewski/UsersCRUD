@@ -17,7 +17,7 @@ public class UserDAO {
     private static final String UPDATE_USER = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
     private static final String DELETE_USER = "DELETE  FROM users WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users";
-
+    private static
     public User create(User user) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement preStmt = conn.prepareStatement(CREATE_USER_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -44,8 +44,8 @@ public class UserDAO {
             if (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("id"));
-                user.setEmail(rs.getString("email"));
                 user.setUsername(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
 
                 return user;
