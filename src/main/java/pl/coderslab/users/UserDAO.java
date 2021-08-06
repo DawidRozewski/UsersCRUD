@@ -12,17 +12,17 @@ import java.util.Arrays;
 
 public class UserDAO {
 
-    private static final String CREATE_USER_QUERY = "INSERT INTO users(email, username, password) VALUES (?, ?, ?)";
+    private static final String CREATE_USER_QUERY = "INSERT INTO users( username, email, password) VALUES ( ?, ?, ?)";
     private static final String READ_USER = "SELECT * FROM users WHERE id = ?";
-    private static final String UPDATE_USER = "UPDATE users SET email = ?, username = ?, password = ? WHERE id = ?";
+    private static final String UPDATE_USER = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
     private static final String DELETE_USER = "DELETE  FROM users WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users";
 
     public User create(User user) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement preStmt = conn.prepareStatement(CREATE_USER_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
-            preStmt.setString(1, user.getEmail());
-            preStmt.setString(2, user.getUsername());
+            preStmt.setString(1, user.getUsername());
+            preStmt.setString(2, user.getEmail());
             preStmt.setString(3, hashPassword(user.getPassword()));
             preStmt.executeUpdate();
             ResultSet rs = preStmt.getGeneratedKeys();
@@ -77,8 +77,8 @@ public class UserDAO {
             while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("id"));
-                user.setEmail("email");
                 user.setUsername("username");
+                user.setEmail("email");
                 users = addToArray(user, users);
             }
             return users;
