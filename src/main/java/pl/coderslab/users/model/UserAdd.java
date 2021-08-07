@@ -15,7 +15,7 @@ public class UserAdd extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/users/add.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/users/add.jsp").forward(request, response);
     }
 
     @Override
@@ -26,9 +26,9 @@ public class UserAdd extends HttpServlet {
             String email = request.getParameter("email");
 
             if (isBlank(username) || isBlank(password) || isBlank(email)) {
-                getServletContext().getRequestDispatcher("/users/emptyFormAlert.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/WEB-INF/users/emptyFormAlert.jsp").forward(request, response);
             } else if (!password.matches(PASSWORD_PATTERN)) {
-                getServletContext().getRequestDispatcher("/users/wrongPassword.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/WEB-INF/users/wrongPassword.jsp").forward(request, response);
             } else {
                 UserDAO userDAO = new UserDAO();
                 User user = new User();
@@ -39,7 +39,7 @@ public class UserAdd extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/user/list");
             }
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/users/emptyFormAlert.jsp");
+            response.sendRedirect(request.getContextPath() + "/WEB-INF/users/emptyFormAlert.jsp");
         }
     }
 

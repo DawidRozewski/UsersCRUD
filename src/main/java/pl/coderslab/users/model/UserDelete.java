@@ -16,7 +16,7 @@ public class UserDelete extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         User readUser = userDAO.read(Integer.parseInt(id));
         request.setAttribute("user", readUser);
-        getServletContext().getRequestDispatcher("/users/deleteUser.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/users/deleteUser.jsp").forward(request, response);
     }
 
     @Override

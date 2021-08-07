@@ -16,7 +16,7 @@ public class UserShow extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         User readUser = userDAO.read(Integer.parseInt(id));
         request.setAttribute("user", readUser);
-        getServletContext().getRequestDispatcher("/users/showUser.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/users/showUser.jsp").forward(request, response);
 
     }
 
@@ -28,7 +28,7 @@ public class UserShow extends HttpServlet {
         user.setEmail(request.getParameter("email"));
         user.setPassword(request.getParameter("password"));
 
-        response.sendRedirect(request.getContextPath() + "/user/show");
+        response.sendRedirect(request.getContextPath() + "/WEB-INF/user/show");
 
     }
 }

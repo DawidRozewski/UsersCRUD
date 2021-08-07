@@ -1,8 +1,6 @@
 package pl.coderslab.users.model;
-
 import pl.coderslab.users.controller.User;
 import pl.coderslab.users.controller.UserDAO;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -22,7 +20,7 @@ public class UserEdit extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         User readUser = userDAO.read(Integer.parseInt(id));
         request.setAttribute("user", readUser);
-        getServletContext().getRequestDispatcher("/users/editUser.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/users/editUser.jsp").forward(request, response);
     }
 
     @Override
@@ -32,9 +30,9 @@ public class UserEdit extends HttpServlet {
         String password = request.getParameter("password");
 
         if (isBlank(username) || isBlank(email) || isBlank(password)) {
-            getServletContext().getRequestDispatcher("/users/emptyEditFormAlert.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/users/emptyEditFormAlert.jsp").forward(request, response);
         } else if (!password.matches(PASSWORD_PATTERN)) {
-            getServletContext().getRequestDispatcher("/users/wrongPassEdit.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/users/wrongPassEdit.jsp").forward(request, response);
         } else {
             User user = new User();
             user.setId(Integer.parseInt(request.getParameter("id")));
@@ -48,7 +46,6 @@ public class UserEdit extends HttpServlet {
 
         }
     }
-
     private boolean isBlank(String text) {
         return text == null || "".equals(text);
     }
