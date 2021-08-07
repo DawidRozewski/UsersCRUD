@@ -3,13 +3,13 @@
 
 <%@include file="header.jsp" %>
 
-<div class="container-fluid">
+<div class="container-fluid" >
 
             <!-- 404 Error Text -->
             <div class="text-center">
-                <div class="error mx-auto" data-text="Error">Error</div>
-                <p class="lead text-gray-800 mb-5">Username can't be empty!</p>
-                <a href="/user/list">&larr; Back to Dashboard</a>
+                <div class="error mx-auto">Ops! You forgot something :) </div>
+                <p class="lead text-gray-800 mb-5">  Fill in all fields </p>
+                <a href="/user/add">&larr; Back to form</a>
             </div>
 
 </div>

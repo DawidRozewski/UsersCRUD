@@ -4,6 +4,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 @WebServlet("/user/add")
 public class UserAdd extends HttpServlet {
@@ -16,18 +18,24 @@ public class UserAdd extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDAO userDAO = new UserDAO();
-        User user = new User();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
 
-        user.setUsername(request.getParameter("username"));
-        user.setEmail(request.getParameter("email"));
-        user.setPassword(request.getParameter("password"));
-        userDAO.create(user);
-        response.sendRedirect(request.getContextPath() + "/user/list");
-
+        if (isBlank(username) || isBlank(password) || isBlank(email)) {
+            getServletContext().getRequestDispatcher("/users/emptyFormAlert.jsp").forward(request, response);
+        } else {
+            UserDAO userDAO = new UserDAO();
+            User user = new User();
+            user.setUsername(request.getParameter("username"));
+            user.setEmail(request.getParameter("email"));
+            user.setPassword(request.getParameter("password"));
+            userDAO.create(user);
+            response.sendRedirect(request.getContextPath() + "/user/list");
+        }
     }
 
-    private boolean verifyEmail(String email) {
-        return email.matches("[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.([a-zA-Z]{2,}){1}");
+    private boolean isBlank(String text) {
+        return text == null || "".equals(text);
     }
 }
