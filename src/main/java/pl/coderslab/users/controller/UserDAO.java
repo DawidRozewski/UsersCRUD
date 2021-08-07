@@ -34,7 +34,7 @@ public class UserDAO {
             return null;
         }
     }
-    
+
     public User read(int userID) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement preStmt = conn.prepareStatement(READ_USER);
