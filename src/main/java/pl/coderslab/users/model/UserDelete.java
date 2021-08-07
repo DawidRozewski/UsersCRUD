@@ -1,4 +1,7 @@
-package pl.coderslab.users;
+package pl.coderslab.users.model;
+
+import pl.coderslab.users.controller.User;
+import pl.coderslab.users.controller.UserDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,15 +16,15 @@ public class UserDelete extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         User readUser = userDAO.read(Integer.parseInt(id));
         request.setAttribute("user", readUser);
-          getServletContext().getRequestDispatcher("/users/deleteUser.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/users/deleteUser.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            int id = Integer.parseInt(request.getParameter("id"));
-            UserDAO userDAO = new UserDAO();
-            userDAO.delete(id);
-            response.sendRedirect(request.getContextPath() + "/user/list");
+        int id = Integer.parseInt(request.getParameter("id"));
+        UserDAO userDAO = new UserDAO();
+        userDAO.delete(id);
+        response.sendRedirect(request.getContextPath() + "/user/list");
 
     }
 }

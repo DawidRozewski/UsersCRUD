@@ -1,4 +1,4 @@
-package pl.coderslab.users;
+package pl.coderslab.users.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;

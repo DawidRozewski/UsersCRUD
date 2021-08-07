@@ -1,4 +1,7 @@
-package pl.coderslab.users;
+package pl.coderslab.users.model;
+
+import pl.coderslab.users.controller.User;
+import pl.coderslab.users.controller.UserDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
