@@ -1,5 +1,4 @@
 package pl.coderslab.users.controller;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;

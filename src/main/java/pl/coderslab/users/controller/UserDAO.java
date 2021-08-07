@@ -1,5 +1,4 @@
 package pl.coderslab.users.controller;
-
 import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.users.controller.User;
 import pl.coderslab.utils.DbUtil;
@@ -35,8 +34,7 @@ public class UserDAO {
             return null;
         }
     }
-
-
+    
     public User read(int userID) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement preStmt = conn.prepareStatement(READ_USER);
