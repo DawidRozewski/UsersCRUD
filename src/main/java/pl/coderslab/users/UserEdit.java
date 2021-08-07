@@ -29,18 +29,19 @@ public class UserEdit extends HttpServlet {
         if (isBlank(username) || isBlank(password) || isBlank(email)) {
             getServletContext().getRequestDispatcher("/users/emptyEditFormAlert.jsp").forward(request, response);
         } else {
-        User user = new User();
-        user.setId(Integer.parseInt(request.getParameter("id")));
-        user.setUsername(username);
-        user.setEmail(password);
-        user.setPassword(password);
+            User user = new User();
+            user.setId(Integer.parseInt(request.getParameter("id")));
+            user.setUsername(username);
+            user.setEmail(password);
+            user.setPassword(password);
 
-        UserDAO userDAO = new UserDAO();
-        userDAO.update(user);
-        response.sendRedirect(request.getContextPath() + "/user/list");
+            UserDAO userDAO = new UserDAO();
+            userDAO.update(user);
+            response.sendRedirect(request.getContextPath() + "/user/list");
 
+        }
     }
-    }
+
     private boolean isBlank(String text) {
         return text == null || "".equals(text);
     }
